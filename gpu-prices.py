@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
+from datetime import date
 
 URL = "https://www.newegg.com/Desktop-Graphics-Cards/SubCategory/ID-48?Tid=7709&Order=4"
 #Opening up connection and getting the data
@@ -10,10 +11,13 @@ uClient.close()
 
 #html parsing
 page_soup = soup(page_html, "html.parser")
-
+today = date.today()
+today_str = str(today)
 containers = page_soup.findAll("div",{"class":"item-container"})
+
 #Write the list to csv
-filename = "products.csv"
+extension = ".csv"
+filename = "GPU Prices " + today_str + extension
 f = open(filename, "w")
 headers = "Product_Name, Product_Price\n"
 
