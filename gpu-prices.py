@@ -11,9 +11,12 @@ uClient.close()
 
 #html parsing
 page_soup = soup(page_html, "html.parser")
+
+containers = page_soup.findAll("div",{"class":"item-container"})
+
+#Get today's date and convert to string
 today = date.today()
 today_str = str(today)
-containers = page_soup.findAll("div",{"class":"item-container"})
 
 #Write the list to csv
 extension = ".csv"
